@@ -1,6 +1,3 @@
-//import org.apache.http.HttpResponse;
-//import org.apache.http.client.methods.HttpGet;
-//import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -43,18 +40,10 @@ public class Advance
 		 driver.findElement(By.xpath("html/body/div[1]/div[2]/a[2]")).click();
 
 		// problem1
-		 WebElement searchBtn = driver.findElement(By.cssSelector(".menutitle"));
-		 Actions action = new Actions(driver);
-		 action.moveToElement(searchBtn).perform();
-		 driver.findElement(By.xpath("html/body/div/div[2]/div[2]/span[5]")).click();
-
-		// Actions actions = new Actions(driver);
-		// WebElement mainMenu =
-		// driver.findElement(By.cssSelector(".menutitle"));
-		// actions.moveToElement(mainMenu).perform();
-		// WebElement subMenu = driver.findElement(By.linkText("Go Next"));
-		// actions.moveToElement(subMenu);
-		// actions.click().build().perform();
+		       WebElement searchBtn = driver.findElement(By.cssSelector(".menutitle"));
+		       Actions action = new Actions(driver);
+		       action.moveToElement(searchBtn).perform();
+		       driver.findElement(By.xpath("html/body/div/div[2]/div[2]/span[5]")).click();
 
 		// problem2
 		 
@@ -83,17 +72,6 @@ public class Advance
 			
 			//playing the video
 			js.executeScript("document.getElementsByClassName('video')[0].getElementsByTagName('object')[0].playMovie();");
-			/*
-			 * checking the play time of video and then waiting for that time before clicking on proceed 
-			double i = (double) js.executeScript("return document.getElementsByClassName('video')[0].getElementsByTagName('object')[0].getTotalTime();");
-			int j = (int) i;
-			System.out.println(+i);
-			System.out.println(+j);
-			j=j*1000+1000;
-			//Thread.sleep(j);
-			driver.findElement(By.linkText("Proceed")).click();
-			*/
-			
 			System.out.println("Started");
 			//checking the status of video and clicking on proceed when it is played
 			while(true)
@@ -121,47 +99,6 @@ public class Advance
 			String token = driver.findElement(By.cssSelector("html>body>pre")).getText();
 			String t = token.substring(10,42);
 			System.out.println(t);
-			
-		/*	
-		 * sending GET request using httpClient 
-		 try 
-			{
-				
-				// create HTTP Client
-				HttpClient HttpClient = HttpClientBuilder.create().build();
-	 
-				// Create new getRequest with below mentioned URL
-				HttpGet getRequest = new HttpGet("http://10.0.1.86/tatoc/advanced/rest/service/token/"+p[1]);
-	 
-				// Add additional header to getRequest which accepts application/xml data
-				getRequest.addHeader("accept", "application/xml");
-	 
-				// Execute your request and catch response
-				HttpResponse response = HttpClient.execute(getRequest);
-	 
-				// Check for HTTP response code: 200 = success
-				if (response.getStatusLine().getStatusCode() != 200) 
-				{
-					throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
-				}
-	 
-				// Get-Capture Complete application/xml body response
-				BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-				
-				//String t;
-				//System.out.println(br);
-				//System.out.println(br.readLine());
-				// Simply iterate through XML response and show on console.
-				while ((output = br.readLine()) != null)
-				{   // t = new String(output);
-					System.out.println(output);
-					break;
-				}
-				//String t=new String(output);
-				System.out.println(output);
-			} catch(Exception e){} 			*/
-	////////////////////////////////////////////////////////////////////////////////////////
-			
 			// sending the POST request
 			
 			URL url = new URL("http://10.0.1.86/tatoc/advanced/rest/service/register");
@@ -181,27 +118,13 @@ public class Advance
 			System.out.println("\nSending 'POST' request to URL : " + url);
 			System.out.println("Post parameters : " + string);
 			System.out.println("Response Code : " + responseCode);
-
-////			BufferedReader in = new BufferedReader(
-////			        new InputStreamReader(conn.getResponseMessage()));
-//			String inputLine;
-//			StringBuffer response = new StringBuffer();
-//
-//			while ((inputLine = in.readLine()) != null) 
-//			{// TODO Auto-generated method stub
-//				response.append(inputLine);
-//			}
-//			in.close();
-//			
-//			//print result
-//			System.out.println(response.toString());
-		    System.out.println(conn.getResponseMessage());
+		        System.out.println(conn.getResponseMessage());
 			conn.disconnect();
 			driver.navigate().back();
 			Thread.sleep(1000);
-		    driver.findElement(By.linkText("Proceed")).click();
+		        driver.findElement(By.linkText("Proceed")).click();
 			
-	  //problem5
+	        //problem5
 			driver.findElement(By.linkText("Download File")).click();
 			
 			Thread.sleep(4000);
@@ -238,10 +161,10 @@ public class Advance
 				}
 			}
 
-		    String signature= strings.get(2);
-		    signature= signature.substring(11);
-		    driver.findElement(By.cssSelector("#signature")).sendKeys(signature);
-		    driver.findElement(By.cssSelector(".submit")).click();
+		        String signature= strings.get(2);
+		        signature= signature.substring(11);
+		        driver.findElement(By.cssSelector("#signature")).sendKeys(signature);
+		        driver.findElement(By.cssSelector(".submit")).click();
 			
 			
 			}
